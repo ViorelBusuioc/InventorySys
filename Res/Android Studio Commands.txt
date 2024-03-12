@@ -1,0 +1,70 @@
+1. Button Action
+button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                
+            }
+        });
+________________________________________________________________        
+
+2. View declaring in Java
+textView = findViewById(R.id.textView)
+//textViews can be any View
+________________________________________________________________
+
+3. Explicit Intent
+Intent i = new Intent(getApplicationContext(), Activity2.class);
+startActivity(i);
+//Activity2 is the destination activity
+________________________________________________________________
+
+4. Implicit Intent
+button.setOnClickListener(new View.OnClickListener() 
+{
+	@Override
+	public void onClick(View v) {
+	Intent intent = new Intent(Intent.ACTION_VIEW);
+	intent.setData(Uri.parse("https://www.google.com/"));
+	startActivity(intent);
+}
+});
+_________________________________________________________________
+
+5. Set an Get data between Activities
+	//On the mother class
+	i.putExtra("id", "1000");
+	//On the child class
+	Intent intent = getIntent();
+	String id = intent.getStringExtra("id");
+________________________________________________________________
+
+6. Share 
+
+		Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, name);  // subiectul mailului
+        intent.putExtra(Intent.EXTRA_TEXT, luckyNumber);   // corpul mailului
+        startActivity(Intent.createChooser(intent, "Choose a platform"));
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
