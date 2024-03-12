@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Form</title>
+</head>
+<body>
+<h2>Invoice Information</h2>
+
+<form th:action="@{/invoice/generate-invoice}" method="POST">
+
+    <label for="customer">Select Customer: </label>
+
+    <select id="customer" name="customer" required>
+        <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.name}"></option>
+    </select>
+
+    <br>
+    <br>
+    <span th:if="${errorMessage != null}" style="color: red;">
+    [[${errorMessage}]]
+        <br>
+        <br>
+    </span>
+    <table>
+        <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.name}"></td>
+            <td>
+                <input type="hidden" name="productId" th:value="${product.id}">
+                <input type="number" id="quantity" name="quantity" value="0" min="0" style="width: 50px;">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+    <button type="submit">Generate Invoice</button>
+</form>
+<br>
+<br>
+<a th:href="@{/products/list}">Back to Products List</a>
+
+</body>
+</html>

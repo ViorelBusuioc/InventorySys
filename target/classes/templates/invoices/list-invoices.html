@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Details</title>
+</head>
+
+<body>
+<h2>Invoice Details</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Creation Date</th>
+        <th>Customer Name</th>
+        <th>Line Items</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="invoice : ${invoices}">
+        <td th:text="${invoice.id}"></td>
+        <td th:text="${#dates.format(invoice.creationDate, 'dd-MM-yyyy')}"></td>
+        <td th:text="${invoice.customer.name}"></td>
+        <td>
+            <table border="1">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Quantity</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="lineItem : ${invoice.lineItems}">
+                    <td th:text="${lineItem.id}"></td>
+                    <td th:text="${lineItem.qty}"></td>
+                    <td th:text="${lineItem.product.name}"></td>
+                    <td th:text="${lineItem.product.sellingPrice}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+
+</html>
+
+
